@@ -27,10 +27,14 @@ class App extends React.Component {
   toggleCompleted = clickedItemId => {
     this.setState({
       list: this.state.list.map(item => {
+        if (item.id === clickedItemId) {
           return {
             ...item,
             completed: !item.completed
           };
+        } else {
+          return item;
+        }
       })
     });
   };
@@ -57,6 +61,7 @@ class App extends React.Component {
       <div className="App">
         <div className='header'>
           <h2>Welcome to your Todo App!</h2>
+          <h4>Click on an item to mark it as complete</h4>
           <TodoForm addItem={this.addItem}/>
           <TodoList 
             list={this.state.list}

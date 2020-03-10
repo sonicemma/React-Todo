@@ -27,14 +27,10 @@ class App extends React.Component {
   toggleCompleted = clickedItemId => {
     this.setState({
       list: this.state.list.map(item => {
-        if (item.id === clickedItemId) {
           return {
             ...item,
             completed: !item.completed
           };
-        } else {
-          return item;
-        }
       })
     });
   };
@@ -50,6 +46,12 @@ class App extends React.Component {
     });
   };
 
+  clearCompleted = () => {
+    this.setState({
+      list: this.state.list.filter(item => !item.completed)
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -59,6 +61,7 @@ class App extends React.Component {
           <TodoList 
             list={this.state.list}
             toggleCompleted={this.toggleCompleted}
+            clearCompleted={this.clearCompleted}
           />
         </div>
       </div>
